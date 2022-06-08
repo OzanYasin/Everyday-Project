@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  /* Display set to flex to center everythin by combining this with flex-direction column. */
+  display: flex;
+  flex-direction: column;
+  /* aligning items horizontal due to flex-direction is column (default is row) */
+  align-items: center;
+  /* Centering everything from top to bottom */
+  height: 100vh;
+  margin: 0;
+}
