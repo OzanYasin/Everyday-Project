@@ -1,0 +1,114 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+/* To define custom properties which are just basicly variables, we need a scope(root in this case) */
+:root {
+  --line--border--fill: #3498db;
+  --line--border--empty: #e0e0e0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f6f7fb;
+  font-family: Muli, sans-serif;
+  /* Display set to flex to center everythin by combining this with flex-direction column. */
+  display: flex;
+  /* aligning items horizontal due to flex-direction is column (default is row) */
+  align-items: center;
+  /* Centering everything from top to bottom */
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 30px;
+  max-width: 100%;
+  width: 350px;
+}
+
+/*  */
+.progress-container::before {
+  /* In CSS, ::before creates a pseudo-element that is the first child of the selected element. It is often used to add cosmetic content to an element with the content property. It is inline by default. */
+  content: "";
+  /* The var() CSS function can be used to insert the value of a custom property (sometimes called a "CSS variable") instead of any part of a value of another property. */
+  background-color: var(--line--border--empty);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  /* Must be 100% width, because it's going to represent the empty line */
+  width: 100%;
+  /* We want to be sure blue bar is behind the numbers */
+  z-index: -1;
+  /* Do not need to transition because it's not actually going to do anything. It's just the line behind it */
+  /* transition: 0.4s ease */
+}
+
+.progress {
+  background-color: var(--line--border--fill);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 4px;
+  /* Must be 0% width, because it has to be starting point */
+  width: 0%;
+  /* We want to be sure blue bar is behind the numbers */
+  z-index: -1;
+  /* We want to line to transition in a certain duration (0.4s), not just flip to the next one. */
+  transition: 0.4s ease;
+}
+
+.circle {
+  background-color: #fff;
+  color: #999;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--line--border--empty);
+  /* The border is going to change depending on where the blue line is. If it's up to two, then that border should be two. */
+  transition: 0.4s ease;
+}
+
+.circle.active {
+  border-color: var(--line--border--fill);
+}
+
+.btn {
+  background-color: var(--line--border--fill);
+  color: #fff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 8px 30px;
+  margin: 5px;
+  font-size: 14px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:focus {
+  outline: 0;
+}
+
+.btn:disabled {
+  background-color: var(--line--border--empty);
+  /* Cursor can not click (not allowed) */
+  cursor: not-allowed;
+}
