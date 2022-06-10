@@ -1,17 +1,75 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: Muli, sans-serif;
   /* Display set to flex to center everythin by combining this with flex-direction column. */
   display: flex;
-  flex-direction: column;
   /* aligning items horizontal due to flex-direction is column (default is row) */
   align-items: center;
+  justify-content: center;
   /* Centering everything from top to bottom */
   height: 100vh;
+  overflow: hidden;
   margin: 0;
 }
+
+.container {
+  /* Any children of container class, in this case divs are going to be put horizontal into a row. */
+  display: flex;
+  width: 90vw;
+}
+
+.panel {
+  /* To preseve rounded corners on large screens */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh;
+  border-radius: 50px;
+  color: #fff;
+  cursor: pointer;
+  /* All panels are going to be even */
+  flex: 0.5;
+  margin: 10px;
+  /* To position h3 inside absolute. h3 container div, which is our container element (panel) has to be relative */
+  position: relative;
+  transition: flex 0.7s ease-in;
+}
+
+.panel h3 {
+  font-size: 24px;
+  /* Position absolute, thats why we positioned panel relative. */
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.panel.active {
+  flex: 5;
+}
+
+.panel.active h3 {
+  /* transition, opacity animation ease-in in 0.3 seconds after 0.4 seconds delay */
+  opacity: 0.85;
+  transition: opacity 0.3s ease-in 0.4s;
+}
+
+/* If the screen is very small, we want to only show 3 instead of 5 of these cards. */
+@media (max-width: 480px) {
+  .container {
+    /* 100 viewport widths on small screens, so that takes up a little more room and it gives us some extra space. */
+    width: 100vh;
+  }
+
+  /* Under 480px there will be only 3 cards. */
+  .panel:nth-of-type(4),
+  .panel:nth-of-type(5) {
+    display: none;
+  }
+} ;
