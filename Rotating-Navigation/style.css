@@ -42,6 +42,11 @@ body {
   transition: transform 0.5s linear;
 }
 
+/* Once circle rotates, we can see the close button just because of where it's positioned. */
+.container.show-nav .circle {
+  transform: rotate(-70deg);
+}
+
 .circle button {
   cursor: pointer;
   position: absolute;
